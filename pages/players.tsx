@@ -3,10 +3,11 @@ import { Player } from '.';
 import { db } from '../firebase';
 import styles from '../styles/Home.module.css';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Players = () => {
 	const [players, setPlayers] = useState<Player[]>([]);
+	const router = useRouter();
 	useEffect(() => {
 		const sub = db
 			.collection('players')
@@ -34,30 +35,37 @@ const Players = () => {
 					alignItems: 'center',
 					marginRight: 'auto',
 					width: '100%',
-					justifyContent: 'space-evenly',
+					maxWidth: '500px',
+					justifyContent: 'space-between',
+					margin: '0 auto',
 				}}
 			>
-				<Link href='/' passHref>
-					<p
-						style={{
-							cursor: 'pointer',
-							padding: '12px 20px',
-							backgroundColor: 'ButtonFace',
-							borderRadius: '30px',
-							marginRight: '2rem',
-							fontWeight: 'bold',
-							marginLeft: '10px',
-						}}
-					>
-						Back
-					</p>
-				</Link>
-				<h3 style={{ fontSize: '1.5rem', textAlign: 'center' }}>Players</h3>
+				<div
+					onClick={() => router.replace('/')}
+					style={{
+						cursor: 'pointer',
+						padding: '12px 20px',
+						backgroundColor: 'ButtonFace',
+						borderRadius: '30px',
+						marginRight: '2rem',
+						fontWeight: 'bold',
+						marginLeft: '10px',
+					}}
+				>
+					Back
+				</div>
+
+				<h3 style={{ fontSize: '1.5rem', textAlign: 'center' }}>
+					Players <span>({players.length})</span>
+				</h3>
+				<p></p>
 			</div>
 			<div>
-				{players.map((p) => (
-					<PlayerCard key={p.id} player={p} />
-				))}
+				{players
+					.sort((a, b) => (a.jersey > b.jersey ? 1 : -1))
+					.map((p) => (
+						<PlayerCard key={p.id} player={p} />
+					))}
 			</div>
 		</div>
 	);
