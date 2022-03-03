@@ -25,7 +25,7 @@ const Home: NextPage = () => {
 	const [lastName, setLastName] = useState('');
 	const [jersey, setJeysey] = useState('');
 	const [size, setSize] = useState('');
-
+	const [players, setPlayers] = useState<Player[]>([]);
 	const [message, setMessage] = useState<null | string>(null);
 
 	const nameRef = useRef<HTMLInputElement>(null);
@@ -39,22 +39,12 @@ const Home: NextPage = () => {
 		}, 4000);
 	};
 
-	const numberIsTaken = async (n: number) => {
+	const numberIsTaken = async (n: number): Promise<boolean> => {
 		try {
-			let taken: boolean = false;
-			const playersref = await db.collection('players').get();
-			playersref.forEach((p) => {
-				if (p.exists) {
-					if (p.data().jersey === n) {
-						taken = true;
-					} else {
-						taken = false;
-					}
-				}
-			});
-			return taken;
+			const isTaken = players.filter((p) => p.jersey === n).length > 0;
+			return isTaken;
 		} catch (error) {
-			console.log(error);
+			return false;
 		}
 	};
 
@@ -108,6 +98,17 @@ const Home: NextPage = () => {
 			}
 		}
 	};
+
+	useEffect(() => {
+		const sub = db
+			.collection('players')
+			.onSnapshot((snap) =>
+				setPlayers(
+					snap.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Player))
+				)
+			);
+		return sub;
+	}, []);
 
 	return (
 		<div className={styles.container}>
