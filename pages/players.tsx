@@ -31,7 +31,7 @@ export default Players;
 
 const PlayerCard: FC<{ player: Player }> = ({ player }) => {
 	return (
-		<div className={styles.card}>
+		<div style={{ display: 'flex' }} className={styles.card}>
 			<div>
 				<p>{player.name}</p>
 				<p>{player.lastName}</p>
