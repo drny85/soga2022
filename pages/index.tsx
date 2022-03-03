@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
 	FormEvent,
 	HTMLInputTypeAttribute,
@@ -28,6 +29,7 @@ const Home: NextPage = () => {
 	const [players, setPlayers] = useState<Player[]>([]);
 	const [message, setMessage] = useState<null | string>(null);
 	const [loading, setLoading] = useState(false);
+	const router = useRouter();
 
 	const nameRef = useRef<HTMLInputElement>(null);
 	const lastNameRef = useRef<HTMLInputElement>(null);
@@ -102,6 +104,7 @@ const Home: NextPage = () => {
 				setJeysey('');
 				setSize('');
 				clearMessage();
+				router.push('/players');
 			} catch (error) {
 				console.log(error);
 			} finally {
