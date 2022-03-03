@@ -27,6 +27,7 @@ const Home: NextPage = () => {
 	const [size, setSize] = useState('');
 	const [players, setPlayers] = useState<Player[]>([]);
 	const [message, setMessage] = useState<null | string>(null);
+	const [loading, setLoading] = useState(false);
 
 	const nameRef = useRef<HTMLInputElement>(null);
 	const lastNameRef = useRef<HTMLInputElement>(null);
@@ -41,10 +42,13 @@ const Home: NextPage = () => {
 
 	const numberIsTaken = async (n: number): Promise<boolean> => {
 		try {
+			setLoading(true);
 			const isTaken = players.filter((p) => p.jersey === n).length > 0;
 			return isTaken;
 		} catch (error) {
 			return false;
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -73,6 +77,7 @@ const Home: NextPage = () => {
 			clearMessage();
 		} else {
 			try {
+				setLoading(true);
 				const taken = await numberIsTaken(Number(jersey));
 
 				if (taken) {
@@ -95,6 +100,8 @@ const Home: NextPage = () => {
 				clearMessage();
 			} catch (error) {
 				console.log(error);
+			} finally {
+				setLoading(false);
 			}
 		}
 	};
@@ -170,14 +177,16 @@ const Home: NextPage = () => {
 					</select>
 
 					<input
+						disabled={loading}
 						style={{
 							backgroundColor: 'ButtonShadow',
 							fontWeight: 'bold',
 							fontSize: '1.5rem',
+							cursor: 'pointer',
 						}}
 						className={styles.input}
 						type='submit'
-						value={'Submit'}
+						value={loading ? 'Saving' : 'Submit'}
 					/>
 				</form>
 				<div
