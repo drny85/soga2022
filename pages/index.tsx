@@ -44,6 +44,7 @@ const Home: NextPage = () => {
 		try {
 			setLoading(true);
 			const isTaken = players.filter((p) => p.jersey === n).length > 0;
+			console.log(isTaken);
 			return isTaken;
 		} catch (error) {
 			return false;
@@ -91,6 +92,9 @@ const Home: NextPage = () => {
 					lastName,
 					size,
 				};
+				if (name.toLowerCase() === 'breidys' && size === 'Medium') {
+					alert('Tu esta seguro rata que ese es tu size?');
+				}
 				await db.collection('players').add(p);
 				setMessage('it looks good!');
 				setName('');
