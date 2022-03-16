@@ -58,7 +58,60 @@ const Players = () => {
 				<h3 style={{ fontSize: '1.5rem', textAlign: 'center' }}>
 					Players <span>({players.length})</span>
 				</h3>
-				<p></p>
+			</div>
+			<div
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					padding: '12px 0px',
+					width: '400px',
+					justifyContent: 'space-between',
+				}}
+			>
+				<div style={{ display: 'flex', alignItems: 'center' }}>
+					<div
+						style={{
+							cursor: 'pointer',
+							borderWidth: 1,
+							borderColor: 'ButtonFace',
+							padding: '10px 15px',
+							backgroundColor: '#3ea859',
+							borderRadius: '35px',
+						}}
+					>
+						<a
+							style={{
+								color: '#ffffff',
+								fontWeight: 'bold',
+							}}
+							href='https://cash.app/$sogateam'
+						>
+							$ Cash App Robert
+						</a>
+					</div>
+				</div>
+				<div style={{ display: 'flex', alignItems: 'center' }}>
+					<div
+						style={{
+							cursor: 'pointer',
+							borderWidth: 1,
+							borderColor: 'ButtonFace',
+							padding: '10px 15px',
+							backgroundColor: '#3ea859',
+							borderRadius: '35px',
+						}}
+					>
+						<a
+							style={{
+								color: '#ffffff',
+								fontWeight: 'bold',
+							}}
+							href='https://cash.app/$ceballos1012'
+						>
+							$ Cash App Wilson
+						</a>
+					</div>
+				</div>
 			</div>
 
 			<div>
