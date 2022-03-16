@@ -144,9 +144,10 @@ const Home: NextPage = () => {
 					}}
 				>
 					<p>
-						<b>$45 </b>for Hat{' '}
+						<b>$45 </b>for{' '}
 					</p>
 					<GiBilledCap size={30} />
+					<p>&</p>
 					<FaTshirt size={30} />
 				</div>
 				<div
