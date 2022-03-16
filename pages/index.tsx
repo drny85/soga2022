@@ -15,6 +15,7 @@ export interface Player {
 	lastName: string;
 	jersey: number;
 	size: string;
+	paid?: boolean;
 }
 
 const Home: NextPage = () => {

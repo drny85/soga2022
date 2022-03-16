@@ -129,73 +129,95 @@ export default Players;
 
 const PlayerCard: FC<{ player: Player }> = ({ player }) => {
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flex: 1,
-				minWidth: '400px',
-				boxShadow: '12px 8px 6px rgba(0,0,0,0.123)',
-				justifyContent: 'space-between',
-			}}
-			className={styles.card}
-		>
+		<div>
 			<div
 				style={{
 					display: 'flex',
-					flexDirection: 'column',
+					flex: 1,
+					minWidth: '400px',
+					boxShadow: '12px 8px 6px rgba(0,0,0,0.123)',
+					justifyContent: 'space-between',
 				}}
+				className={styles.card}
 			>
-				<div style={{ display: 'flex', flex: 0.7 }}>
-					<p
-						style={{
-							textTransform: 'capitalize',
-							paddingRight: '10px',
-							fontWeight: 'bold',
-						}}
-					>
-						{player.name}
-					</p>
-					<p style={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
-						{player.lastName}
-					</p>
-				</div>
-				<div style={{ display: 'flex' }}>
-					<p style={{ textTransform: 'capitalize', paddingRight: '10px' }}>
-						{player.size}
-					</p>
-					<p>{player.jersey}</p>
-				</div>
-			</div>
-
-			<div
-				style={{
-					display: 'flex',
-					flex: 0.4,
-					maxHeight: '5rem',
-					position: 'relative',
-				}}
-			>
-				<Image
-					src='/images/redsox1.png'
-					width='100%'
-					height='100%'
-					alt='logo'
-					objectFit='cover'
-					objectPosition='center'
-				/>
-				<p
+				<div
 					style={{
-						position: 'absolute',
-						top: '30px',
-						right: '55%',
-						left: '38%',
-
-						fontWeight: 'bold',
-						transform: 'translateY(-50%, -50%)',
+						display: 'flex',
+						flexDirection: 'column',
 					}}
 				>
-					{player.jersey}
-				</p>
+					<div style={{ display: 'flex', flex: 0.7 }}>
+						<p
+							style={{
+								textTransform: 'capitalize',
+								paddingRight: '10px',
+								fontWeight: 'bold',
+							}}
+						>
+							{player.name}
+						</p>
+						<p style={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
+							{player.lastName}
+						</p>
+					</div>
+					<div style={{ display: 'flex' }}>
+						<p style={{ textTransform: 'capitalize', paddingRight: '10px' }}>
+							{player.size}
+						</p>
+						<p>{player.jersey}</p>
+					</div>
+					<div
+						style={{
+							display: 'flex',
+							alignSelf: 'center',
+							marginTop: '1rem',
+						}}
+					>
+						{player.paid && (
+							<div
+								style={{
+									boxShadow: '6px 4px 4px rgba(0,0,0,0.124)',
+									padding: '5px 1.5rem',
+									borderRadius: '25px',
+									backgroundColor: '#0bb63e',
+								}}
+							>
+								<p style={{ color: '#ffffff', fontWeight: 'bold' }}>Paid</p>
+							</div>
+						)}
+					</div>
+				</div>
+
+				<div
+					style={{
+						display: 'flex',
+						flex: 0.4,
+						maxHeight: '5rem',
+						position: 'relative',
+					}}
+				>
+					<Image
+						src='/images/redsox1.png'
+						width='100%'
+						height='100%'
+						alt='logo'
+						objectFit='cover'
+						objectPosition='center'
+					/>
+					<p
+						style={{
+							position: 'absolute',
+							top: '30px',
+							right: '55%',
+							left: '38%',
+
+							fontWeight: 'bold',
+							transform: 'translateY(-50%, -50%)',
+						}}
+					>
+						{player.jersey}
+					</p>
+				</div>
 			</div>
 		</div>
 	);
