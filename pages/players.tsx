@@ -60,6 +60,7 @@ const Players = () => {
 				</h3>
 				<p></p>
 			</div>
+
 			<div>
 				{players
 					.sort((a, b) => (a.jersey > b.jersey ? 1 : -1))

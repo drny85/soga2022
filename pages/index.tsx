@@ -1,15 +1,11 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {
-	FormEvent,
-	HTMLInputTypeAttribute,
-	useEffect,
-	useRef,
-	useState,
-} from 'react';
+import { GiBilledCap } from 'react-icons/gi';
+import { FaTshirt } from 'react-icons/fa';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import { db } from '../firebase';
 import styles from '../styles/Home.module.css';
 
@@ -139,6 +135,32 @@ const Home: NextPage = () => {
 						<p>{message}</p>
 					</div>
 				)}
+				<div
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'space-around',
+						width: '200px',
+					}}
+				>
+					<p>
+						<b>$45 </b>for Hat{' '}
+					</p>
+					<GiBilledCap size={30} />
+					<FaTshirt size={30} />
+				</div>
+				<div
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+					}}
+				>
+					<p style={{ paddingRight: '1rem' }}>
+						<b>$15</b> for any additional
+					</p>
+					<GiBilledCap size={30} />
+				</div>
 				<form className={styles.card} onSubmit={submitForm}>
 					<input
 						type='text'
